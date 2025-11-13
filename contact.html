@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact | STACKLY ARCHITECH STUDIO</title>
+
+  <!-- Fonts & Icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <style>
+    :root {
+      --bg1: #06080f;
+      --bg2: #0b1220;
+      --accent: #4ff3ff;
+      --pink: #ff2d7f;
+      --white: #e9f7ff;
+      --glass: rgba(255, 255, 255, 0.08);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: "Poppins", sans-serif;
+      background: radial-gradient(circle at top, var(--bg2), var(--bg1));
+      color: var(--white);
+      overflow-x: hidden;
+      scroll-behavior: smooth;
+    }
+
+    /* HEADER */
+    .header {
+      width: 100%;
+      height: 80px;
+      padding: 18px 6vw;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(255, 255, 255, 0.03);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      position: fixed;
+      top: 0;
+      z-index: 1100;
+    }
+
+    .logo-area {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--white);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      letter-spacing: 1px;
+      z-index: 1102;
+    }
+
+    .logo-area img {
+      width: 58px;
+      height: 58px;
+      border-radius: 50%;
+      box-shadow: 0 0 18px #02090a90;
+    }
+
+    nav {
+      display: flex;
+      gap: 2rem;
+      align-items: center;
+      transition: all 0.4s ease;
+    }
+
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 1rem;
+      transition: 0.3s;
+    }
+
+    nav a:hover,
+    nav a.active {
+      color: var(--accent);
+      text-shadow: 0 0 10px var(--accent);
+    }
+
+    .hamburger {
+      display: none;
+      font-size: 28px;
+      color: var(--accent);
+      cursor: pointer;
+      z-index: 1201;
+    }
+
+    /* OVERLAY MENU */
+    .mobile-menu {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100vh;
+      background: #060b18;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 25px;
+      transform: translateY(-100%);
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.45s ease;
+      z-index: 1200;
+    }
+
+    .mobile-menu.show {
+      transform: translateY(0);
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .mobile-menu a {
+      font-size: 1.5rem;
+      color: #fff;
+      text-decoration: none;
+      font-weight: 500;
+      transition: 0.3s;
+    }
+
+    .mobile-menu a:hover,
+    .mobile-menu a.active {
+      color: var(--accent);
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 30px;
+      right: 30px;
+      font-size: 30px;
+      color: var(--white);
+      cursor: pointer;
+    }
+
+    /* PAGE HEADER */
+    .page-header {
+      text-align: center;
+      padding: 120px 20px 20px;
+    }
+
+    .page-header h1 {
+      font-size: 3rem;
+      color: var(--accent);
+    }
+
+    .page-header p {
+      margin-top: 12px;
+      color: #b8d8ff;
+      font-size: 1.2rem;
+    }
+
+    /* CONTACT BOX */
+    .contact-box {
+      max-width: 1200px;
+      margin: 50px auto;
+      padding: 40px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 40px;
+      background: var(--glass);
+      border-radius: 20px;
+      backdrop-filter: blur(15px);
+      box-shadow: 0 0 25px rgba(0, 200, 255, 0.16);
+    }
+
+    .info h2 {
+      margin-bottom: 15px;
+      color: var(--accent);
+      font-size: 1.8rem;
+    }
+
+    .info p {
+      margin-bottom: 10px;
+      line-height: 1.7;
+      word-wrap: break-word;
+    }
+
+    input,
+    textarea {
+      width: 100%;
+      padding: 14px;
+      margin-bottom: 12px;
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.1);
+      border: none;
+      color: white;
+      font-size: 1rem;
+    }
+
+    button {
+      width: 100%;
+      padding: 14px;
+      border: none;
+      border-radius: 30px;
+      background: linear-gradient(135deg, var(--pink), var(--accent));
+      font-size: 1rem;
+      color: white;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 15px var(--accent);
+    }
+
+    /* MAP */
+    .map-box {
+      margin: 60px auto;
+      text-align: center;
+    }
+
+    .map-box iframe {
+      width: 90%;
+      height: 430px;
+      border-radius: 18px;
+      border: none;
+    }
+
+    /* NEW FOOTER */
+    footer {
+      background: #06070d;
+      color: #e9f7ff;
+      padding: 70px 6vw 30px;
+    }
+
+    .footer-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 40px;
+      align-items: start;
+    }
+
+    .footer-logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 15px;
+    }
+
+    .footer-logo img {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+    }
+
+    .footer-logo h3 {
+      color: var(--accent);
+      font-size: 1.1rem;
+      line-height: 1.3;
+    }
+
+    .footer-col h3 {
+      color: #9c6eff;
+      margin-bottom: 15px;
+      font-size: 1.1rem;
+    }
+
+    .footer-col a {
+      display: block;
+      color: #cbd5e1;
+      text-decoration: none;
+      margin-bottom: 8px;
+      font-size: 0.95rem;
+      transition: 0.3s;
+    }
+
+    .footer-col a:hover {
+      color: var(--accent);
+      transform: translateX(5px);
+    }
+
+    .footer-col p {
+      color: #cbd5e1;
+      margin-bottom: 8px;
+      font-size: 0.95rem;
+    }
+
+    .social-links {
+      display: flex;
+      gap: 10px;
+      margin-top: 8px;
+    }
+
+    .social-links a {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 35px;
+      height: 35px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.08);
+      color: white;
+      font-size: 1rem;
+      transition: 0.35s ease;
+    }
+
+    .social-links a:hover {
+      background: linear-gradient(90deg, #06b6d4, #8b5cf6);
+      transform: scale(1.1);
+    }
+
+    .footer-bottom {
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      text-align: center;
+      margin-top: 45px;
+      padding-top: 20px;
+      font-size: 0.9rem;
+      color: #9ca3af;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      nav { display: none; }
+      .hamburger { display: block; }
+      .footer-container { grid-template-columns: 1fr 1fr; gap: 30px; }
+    }
+
+    @media (max-width: 500px) {
+      .footer-container { grid-template-columns: 1fr; text-align: center; }
+      .footer-logo { justify-content: center; }
+      .social-links { justify-content: center; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- HEADER -->
+  <header class="header">
+    <div class="logo-area">
+      <img src="logo1.webp" alt="Logo">
+      <div class="logo-title">STACKLY</div>
+    </div>
+
+    <div class="hamburger"><i class="fa fa-bars"></i></div>
+
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="projects.html">Projects</a>
+      <a href="why.html">Why Us</a>
+      <a href="contact.html" class="active">Contact</a>
+      <a href="login.html">Login</a>
+    </nav>
+  </header>
+
+  <!-- MOBILE OVERLAY MENU -->
+  <div class="mobile-menu" id="mobileMenu">
+    <div class="close-btn" id="closeBtn"><i class="fa-solid fa-xmark"></i></div>
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="projects.html">Projects</a>
+    <a href="why.html">Why Us</a>
+    <a href="contact.html" class="active">Contact</a>
+    <a href="login.html">Login</a>
+  </div>
+
+  <!-- PAGE HEADER -->
+  <section class="page-header">
+    <h1>Contact Us</h1>
+    <p>We bring architectural dreams to life.</p>
+  </section>
+
+  <!-- CONTACT FORM -->
+  <section class="contact-box">
+    <div class="info">
+      <h2>Get in Touch</h2>
+      <p><strong>📍 Address:</strong> MMR Complex, Periyakollapatty, Chinna Thirupathi, Salem</p>
+      <p><strong>📞 Phone:</strong> +91 8056522920</p>
+      <p><strong>✉️ Email:</strong> stackly.architechstudio@gmail.com</p>
+      <p><strong>Follow Us:</strong></p>
+      <p>
+        <a>Instagram</a> • 
+        <a>Facebook</a> • 
+        <a>LinkedIn</a> • 
+        <a>WhatsApp</a>
+      </p>
+    </div>
+
+    <div>
+      <form>
+        <input type="text" placeholder="Your Name" required>
+        <input type="email" placeholder="Your Email" required>
+        <input type="text" placeholder="Subject">
+        <textarea rows="5" placeholder="Your Message"></textarea>
+        <button type="button" id="sendMessageBtn">Send Message 🚀</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- MAP -->
+  <section class="map-box">
+    <iframe src="https://www.google.com/maps?q=MMR%20Complex,%20Periyakollapatty,%20Salem&output=embed"></iframe>
+  </section>
+
+  <!-- NEW RESPONSIVE FOOTER -->
+  <footer>
+    <div class="footer-container">
+      <div class="footer-col footer-about">
+        <div class="footer-logo">
+          <img src="logo1.webp" alt="Stackly Logo">
+          <h3>STACKLY<br>ARCHITECH<br>STUDIO</h3>
+        </div>
+        <p>Premium modern architecture, interior design, and construction solutions for next-gen living and working spaces.</p>
+        <h4>Follow Us</h4>
+        <div class="social-links">
+          <a href="404.html"><i class="fab fa-facebook-f"></i></a>
+          <a href="404.html"><i class="fab fa-instagram"></i></a>
+          <a href="404.html"><i class="fab fa-linkedin-in"></i></a>
+          <a href="404.html"><i class="fab fa-x-twitter"></i></a>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h3>Quick Links</h3>
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="projects.html">Projects</a>
+        <a href="contact.html">Contact</a>
+        <a href="login.html">Login</a>
+      </div>
+
+      <div class="footer-col">
+        <h3>Services</h3>
+        <a href="projects.html">Architectural Design</a>
+        <a href="projects.html">Interior Design</a>
+        <a href="projects.html">Construction</a>
+        <a href="projects.html">Blueprint Drafting</a>
+        <a href="projects.html">3D Visualization</a>
+      </div>
+
+      <div class="footer-col">
+        <h3>Contact</h3>
+        <p><i class="fa-solid fa-phone"></i> +91 98765 43210</p>
+        <p><i class="fa-solid fa-envelope"></i> stacklystudio@gmail.com</p>
+        <p><i class="fa-solid fa-location-dot"></i> Chennai, India</p>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      © 2025 STACKLY ARCHITECH STUDIO — All Rights Reserved.
+    </div>
+  </footer>
+
+  <script>
+    const hamburger = document.querySelector(".hamburger");
+    const mobileMenu = document.getElementById("mobileMenu");
+    const closeBtn = document.getElementById("closeBtn");
+
+    hamburger.addEventListener("click", () => mobileMenu.classList.add("show"));
+    closeBtn.addEventListener("click", () => mobileMenu.classList.remove("show"));
+    document.querySelectorAll(".mobile-menu a").forEach(link =>
+      link.addEventListener("click", () => mobileMenu.classList.remove("show"))
+    );
+
+    document.getElementById("sendMessageBtn").addEventListener("click", function (e) {
+      e.preventDefault();
+      const name = document.querySelector('input[placeholder="Your Name"]').value.trim();
+      const email = document.querySelector('input[placeholder="Your Email"]').value.trim();
+      const message = document.querySelector('textarea').value.trim();
+
+      if (!name || !email || !message) {
+        alert("⚠️ Please fill in your name, email, and message before sending.");
+        return;
+      }
+      alert("✅ Message sent successfully! We'll get back to you soon.");
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Projects | STACKLY ARCHITECH STUDIO</title>
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+  <style>
+    :root {
+      --primary: #0a0f24;
+      --secondary: #1b1f3a;
+      --accent: #8b5cf6;
+      --highlight: #06b6d4;
+      --white: #ffffff;
+      --gray: #cbd5e1;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: "Poppins", sans-serif;
+      background: radial-gradient(circle at 10% 20%, #0f172a 0%, #1e293b 100%);
+      color: var(--white);
+      overflow-x: hidden;
+    }
+
+    /* HEADER */
+    .stx-header {
+      background: linear-gradient(135deg, rgba(11, 17, 37, 0.9), rgba(15, 23, 42, 0.9)),
+        url('https://images.unsplash.com/photo-1526401485004-2aa7e1d2b6f3?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* NAVBAR */
+    .stx-navbar {
+      width: 100%;
+      height: 80px;
+      padding: 18px 6vw;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(255, 255, 255, 0.03);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .stx-brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--white);
+      text-decoration: none;
+      transition: opacity 0.3s ease;
+      letter-spacing: 1px;
+    }
+
+    .stx-brand img {
+      width: 58px;
+      height: 58px;
+      border-radius: 50%;
+      transition: transform 0.3s ease;
+    }
+
+    .stx-brand:hover img {
+      transform: scale(1.05);
+    }
+
+    .stx-menu {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .stx-menu a {
+      text-decoration: none;
+      color: var(--white);
+      font-weight: 500;
+      transition: all 0.3s;
+      font-size: 1rem;
+    }
+
+    .stx-menu .stx-active,
+    .stx-menu a:hover {
+      color: var(--highlight);
+      text-shadow: 0 0 8px rgba(6, 182, 212, 0.8);
+    }
+
+    .stx-burger {
+      display: none;
+      font-size: 2rem;
+      color: var(--white);
+      cursor: pointer;
+      z-index: 1001;
+    }
+
+    /* FULLSCREEN MOBILE MENU */
+    /* FULLSCREEN MOBILE MENU */
+.stx-menu-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(10, 15, 36, 0.98);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2.5rem;
+  transform: translateY(-100%);
+  opacity: 0;
+  transition: all 0.5s ease;
+  z-index: 1000;
+}
+
+.stx-menu-overlay.show {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.stx-menu-overlay a {
+  color: var(--white);
+  font-size: 1.8rem;
+  font-weight: 600;
+  text-decoration: none;
+  position: relative;
+  transition: all 0.3s;
+}
+
+.stx-menu-overlay a.stx-active,
+.stx-menu-overlay a:hover {
+  color: var(--highlight);
+}
+
+.stx-menu-overlay a.stx-active::after,
+.stx-menu-overlay a:hover::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -5px;
+  width: 100%;
+  height: 3px;
+  background: var(--highlight);
+  border-radius: 2px;
+}
+
+.stx-menu-overlay .close-btn {
+  position: absolute;
+  top: 30px;
+  right: 30px;
+  font-size: 2.2rem;
+  color: var(--white);
+  cursor: pointer;
+  transition: transform 0.3s;
+}
+
+.stx-menu-overlay .close-btn:hover {
+  transform: rotate(90deg);
+}
+
+    /* HERO */
+    .stx-hero {
+      text-align: center;
+      padding: 100px 10vw 130px;
+      z-index: 1;
+      animation: fadein 1.2s ease;
+    }
+
+    @keyframes fadein {
+      from {
+        opacity: 0;
+        transform: translateY(40px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .stx-hero h1 {
+      font-size: 3rem;
+      font-weight: 700;
+      background: linear-gradient(90deg, var(--accent), var(--highlight));
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .stx-hero p {
+      margin-top: 10px;
+      font-size: 1.15rem;
+      color: #bde0ef;
+    }
+
+    /* PROJECTS */
+    .stx-projects {
+      max-width: 1200px;
+      margin: -80px auto 90px;
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(12px);
+      padding: 60px 7vw;
+      border-radius: 20px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
+      text-align: center;
+    }
+
+    .stx-projects h2 {
+      font-size: 2.2rem;
+      background: linear-gradient(90deg, var(--highlight), var(--accent));
+      -webkit-background-clip: text;
+      color: transparent;
+      margin-bottom: 30px;
+    }
+
+    .stx-filters {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-bottom: 35px;
+      flex-wrap: wrap;
+    }
+
+    .stx-filters button {
+      padding: 10px 22px;
+      border-radius: 30px;
+      border: none;
+      background: rgba(255, 255, 255, 0.08);
+      color: var(--gray);
+      font-weight: 500;
+      cursor: pointer;
+      transition: 0.4s;
+    }
+
+    .stx-filters button.stx-active,
+    .stx-filters button:hover {
+      background: linear-gradient(90deg, var(--highlight), var(--accent));
+      color: var(--white);
+      box-shadow: 0 0 12px rgba(139, 92, 246, 0.6);
+      transform: scale(1.05);
+    }
+
+    .stx-project-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+    }
+
+    .stx-card {
+      position: relative;
+      overflow: hidden;
+      border-radius: 16px;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 3px 20px rgba(0, 0, 0, 0.2);
+      transform: translateY(40px);
+      opacity: 0;
+      transition: 0.8s ease;
+    }
+
+    .stx-card.show {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    .stx-card img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      transition: 0.7s ease;
+    }
+
+    .stx-card:hover img {
+      transform: scale(1.1);
+    }
+
+    .stx-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.4);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      opacity: 0;
+      transition: 0.4s;
+    }
+
+    .stx-card:hover .stx-overlay {
+      opacity: 1;
+    }
+
+    .stx-overlay a {
+      background: var(--white);
+      padding: 10px 18px;
+      color: var(--accent);
+      border-radius: 30px;
+      font-weight: 600;
+      text-decoration: none;
+    }
+
+    .stx-card-info {
+      padding: 20px;
+      text-align: left;
+    }
+
+    .stx-card-info h3 {
+      font-size: 1.15rem;
+      margin-bottom: 6px;
+    }
+
+    .stx-card-info p {
+      font-size: 0.95rem;
+      color: var(--gray);
+      line-height: 1.5;
+    }
+
+    /* FOOTER */
+    .stx-footer {
+      background: #080a12;
+      color: #d1d5db;
+      padding: 70px 8vw 30px;
+    }
+
+    .stx-footer-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 40px;
+    }
+
+    .stx-footer-col h4 {
+      color: #a855f7;
+      margin-bottom: 15px;
+      font-weight: 600;
+      font-size: 1.2rem;
+    }
+
+    .stx-footer-col p {
+      line-height: 1.7;
+      font-size: 0.95rem;
+    }
+
+    .stx-footer-col a {
+      display: block;
+      color: #cbd5e1;
+      text-decoration: none;
+      margin-bottom: 8px;
+      transition: 0.3s;
+    }
+
+    .stx-footer-col a:hover {
+      color: #8b5cf6;
+      transform: translateX(4px);
+    }
+
+    .stx-footer-brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 15px;
+    }
+
+    .stx-footer-brand img {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: #0f172a;
+      box-shadow: 0 0 15px rgba(139, 92, 246, 0.3);
+    }
+
+    .stx-footer-brand h3 {
+      color: #c084fc;
+      line-height: 1.2;
+    }
+
+    .stx-social-links {
+      display: flex;
+      gap: 15px;
+      margin-top: 12px;
+    }
+
+    .stx-social-links a {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.08);
+      color: #fff;
+      font-size: 1.1rem;
+      transition: 0.3s ease;
+      
+    }
+
+    .stx-social-links a:hover {
+      background: linear-gradient(90deg, #06b6d4, #8b5cf6);
+      box-shadow: 0 0 10px rgba(139, 92, 246, 0.7);
+      transform: scale(1.15);
+    }
+
+    .stx-footer-bottom {
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      text-align: center;
+      margin-top: 40px;
+      padding-top: 20px;
+      font-size: 0.8rem;
+      color: #9ca3af;
+    }
+
+    @media (max-width: 768px) {
+      .stx-burger {
+        display: block;
+      }
+      .stx-menu {
+        display: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="stx-header">
+    <nav class="stx-navbar">
+      <a href="index.html" class="stx-brand">
+        <img src="logo1.webp" alt="logo" />
+        <span>STACKLY</span>
+      </a>
+
+      <ul class="stx-menu">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="projects.html" class="stx-active">Projects</a></li>
+        <li><a href="why.html">Why Us</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="login.html">Login</a></li>
+      </ul>
+
+      <div class="stx-burger"><i class="fas fa-bars"></i></div>
+    </nav>
+
+    <!-- Fullscreen Menu Overlay -->
+    <div class="stx-menu-overlay" id="menuOverlay">
+      <div class="close-btn"><i class="fas fa-times"></i></div>
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="projects.html" class="stx-active">Projects</a>
+      <a href="why.html">Why Us</a>
+      <a href="contact.html">Contact</a>
+      <a href="login.html">Login</a>
+    </div>
+
+    <section class="stx-hero">
+      <h1>Our Signature Projects</h1>
+      <p>Showcasing Innovation, Elegance & Modern Craftsmanship</p>
+    </section>
+  </header>
+
+  <!-- Projects Section -->
+  <section class="stx-projects">
+    <h2>Explore Our Masterpieces</h2>
+    <div class="stx-filters">
+      <button class="stx-active" data-filter="all">All</button>
+      <button data-filter="residential">Residential</button>
+      <button data-filter="commercial">Commercial</button>
+      <button data-filter="interior">Interior</button>
+    </div>
+
+    <div class="stx-project-grid">
+      <!-- Your project cards (same as before) -->
+      <div class="stx-card" data-category="residential">
+        <img src="sky.webp" alt="" />
+        <div class="stx-overlay"><a href="404.html">View Project</a></div>
+        <div class="stx-card-info">
+          <h3>Skyline Villas</h3>
+          <p>Luxury homes with panoramic views and sustainable architecture.</p>
+        </div>
+      </div>
+
+      <div class="stx-card" data-category="commercial">
+        <img src="urbans.webp" alt="" />
+        <div class="stx-overlay"><a href="404.html">View Project</a></div>
+        <div class="stx-card-info">
+          <h3>Urban Square</h3>
+          <p>Innovative commercial complex merging modern workspaces with retail design.</p>
+        </div>
+      </div>
+
+      <div class="stx-card" data-category="interior">
+        <img src="mini.webp" alt="" />
+        <div class="stx-overlay"><a href="404.html">View Project</a></div>
+        <div class="stx-card-info">
+          <h3>Minimalist Interiors</h3>
+          <p>Clean, elegant spaces designed for modern living and aesthetics.</p>
+        </div>
+      </div>
+
+      <div class="stx-card" data-category="residential">
+        <img src="green1.webp" alt="" />
+        <div class="stx-overlay"><a href="404.html">View Project</a></div>
+        <div class="stx-card-info">
+          <h3>Green Haven Residence</h3>
+          <p>Eco-conscious residential design integrating light and nature.</p>
+        </div>
+      </div>
+
+      <div class="stx-card" data-category="commercial">
+        <img src="hub.webp" alt="" />
+        <div class="stx-overlay"><a href="404.html">View Project</a></div>
+        <div class="stx-card-info">
+          <h3>TechHub Offices</h3>
+          <p>Cutting-edge workspace fostering innovation and collaboration.</p>
+        </div>
+      </div>
+
+      <div class="stx-card" data-category="interior">
+        <img src="lux.webp" alt="" />
+        <div class="stx-overlay"><a href="404.html">View Project</a></div>
+        <div class="stx-card-info">
+          <h3>Luxury Apartment</h3>
+          <p>Premium interior blend of textures, tones, and spatial balance.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="stx-footer">
+    <div class="stx-footer-container">
+      <div class="stx-footer-col">
+        <div class="stx-footer-brand">
+          <img src="logo1.webp" alt="Stackly Logo" />
+          <h3>STACKLY<br />ARCHITECH<br />STUDIO</h3>
+        </div>
+        <p>Premium modern architecture, interior design, and construction solutions.</p>
+        <h4>Follow Us</h4>
+        <div class="stx-social-links">
+          <a href="404.html"><i class="fab fa-facebook-f"></i></a>
+          <a href="404.html"><i class="fab fa-instagram"></i></a>
+          <a href="404.html"><i class="fab fa-linkedin-in"></i></a>
+          <a href="404.html"><i class="fab fa-x-twitter"></i></a>
+        </div>
+      </div>
+      <div class="stx-footer-col">
+        <h4>Quick Links</h4>
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="projects.html">Projects</a>
+        <a href="contact.html">Contact</a>
+        <a href="login.html">Login</a>
+      </div>
+      <div class="stx-footer-col">
+        <h4>Services</h4>
+        <a href="projects.html">Architectural Design</a>
+        <a href="projects.html">Interior Design</a>
+        <a href="projects.html">Project Management</a>
+        <a href="projects.html">3D Visualization</a>
+      </div>
+      <div class="stx-footer-col">
+        <h4>Contact</h4>
+        <p><i class="fas fa-phone"></i> +91 98765 43210</p>
+        <p><i class="fas fa-envelope"></i> info@stacklystudio.com</p>
+        <p><i class="fas fa-map-marker-alt"></i> Chennai, Tamil Nadu, India</p>
+      </div>
+    </div>
+    <div class="stx-footer-bottom">
+      © 2025 Stackly Architech Studio. All Rights Reserved.
+    </div>
+  </footer>
+
+  <script>
+    const burger = document.querySelector(".stx-burger");
+    const menuOverlay = document.getElementById("menuOverlay");
+    const closeBtn = menuOverlay.querySelector(".close-btn");
+
+    burger.addEventListener("click", () => {
+      menuOverlay.classList.add("show");
+    });
+
+    closeBtn.addEventListener("click", () => {
+      menuOverlay.classList.remove("show");
+    });
+
+    // Filter Function
+    const buttons = document.querySelectorAll(".stx-filters button");
+    const cards = document.querySelectorAll(".stx-card");
+
+    buttons.forEach(btn => {
+      btn.addEventListener("click", () => {
+        buttons.forEach(b => b.classList.remove("stx-active"));
+        btn.classList.add("stx-active");
+
+        const filter = btn.getAttribute("data-filter");
+
+        cards.forEach(card => {
+          card.style.display =
+            filter === "all" || card.dataset.category === filter
+              ? "block"
+              : "none";
+        });
+      });
+    });
+
+    // Scroll reveal
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add("show");
+      });
+    });
+    document.querySelectorAll(".stx-card").forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>

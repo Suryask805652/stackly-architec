@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>STACKLY ARCHITECH STUDIO | Login & Signup</title>
+
+<!-- Fonts & Icons -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+:root {
+  --primary: #1d2b64;
+  --secondary: #9fa8da;
+  --accent: #7c4dff;
+  --background: #f7f9fc;
+  --card-bg: #ffffff;
+  --text-dark: #222;
+  --text-light: #888;
+}
+
+/* ====== RESET ====== */
+* {
+  margin: 0; padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  color: var(--text-dark);
+}
+
+/* ====== CONTAINER ====== */
+.auth-container {
+  background: var(--card-bg);
+  width: 950px;
+  height: 580px;
+  display: flex;
+  border-radius: 20px;
+  box-shadow: 0 15px 45px rgba(0,0,0,0.2);
+  overflow: hidden;
+  position: relative;
+  transition: 0.5s;
+}
+
+/* ====== LEFT PANEL ====== */
+.side-panel {
+  flex: 1;
+  background: linear-gradient(135deg, var(--accent), var(--primary));
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 30px;
+  text-align: center;
+}
+.side-panel h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.4rem;
+  margin-bottom: 15px;
+}
+.side-panel p {
+  font-size: 1rem;
+  line-height: 1.6;
+  max-width: 330px;
+}
+.side-panel img {
+  margin-top: 40px;
+  width: 130px;
+  filter: drop-shadow(0 0 12px rgba(255,255,255,0.3));
+  transition: 0.4s;
+}
+.side-panel img:hover {
+  transform: scale(1.05);
+}
+
+/* ====== FORM AREA ====== */
+.form-box {
+  flex: 1;
+  position: relative;
+  padding: 60px 50px;
+  background: var(--card-bg);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  transition: 0.5s;
+}
+
+.form-box h2 {
+  text-align: center;
+  color: var(--primary);
+  margin-bottom: 25px;
+  font-weight: 700;
+}
+
+/* ====== INPUT FIELDS ====== */
+.input-field {
+  position: relative;
+  margin-bottom: 18px;
+}
+.input-field input {
+  width: 100%;
+  padding: 14px 45px 14px 15px;
+  border-radius: 12px;
+  border: 1px solid #ddd;
+  background: #f9f9f9;
+  font-size: 1rem;
+  color: var(--text-dark);
+  transition: 0.3s;
+}
+.input-field input:focus {
+  border-color: var(--accent);
+  background: #fff;
+  box-shadow: 0 0 8px rgba(124,77,255,0.2);
+}
+.input-field i {
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-light);
+}
+
+/* ====== BUTTONS ====== */
+.btn-primary {
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  color: #fff;
+  border: none;
+  width: 100%;
+  padding: 14px;
+  border-radius: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.btn-primary:hover {
+  transform: translateY(-2px);
+  background: linear-gradient(135deg, var(--accent), var(--primary));
+}
+
+/* ====== BACK BUTTON ====== */
+.btn-back {
+  background: transparent;
+  border: none;
+  color: var(--accent);
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  margin-bottom: 20px;
+  transition: 0.3s;
+}
+.btn-back:hover {
+  text-decoration: underline;
+  color: var(--primary);
+}
+
+/* ====== LINKS ====== */
+.note {
+  text-align: center;
+  font-size: 0.9rem;
+  margin-top: 20px;
+  color: var(--text-light);
+}
+.note span {
+  color: var(--accent);
+  cursor: pointer;
+  font-weight: 600;
+}
+.note span:hover {
+  text-decoration: underline;
+}
+
+/* ====== FORGOT PASSWORD ====== */
+.forgot-password {
+  text-align: right;
+  font-size: 0.9rem;
+  margin-top: -10px;
+  margin-bottom: 20px;
+}
+.forgot-password a {
+  color: var(--accent);
+  text-decoration: none;
+  font-weight: 500;
+  transition: 0.3s;
+}
+.forgot-password a:hover {
+  text-decoration: underline;
+  color: var(--primary);
+}
+
+/* ====== SWITCH ANIMATION ====== */
+#signupForm {
+  position: absolute;
+  top: 0;
+  left: 100%;
+  width: 100%;
+  height: 100%;
+  transition: all 0.6s ease;
+}
+.auth-container.active #signupForm { left: 0; }
+.auth-container.active #loginForm { left: -100%; }
+
+/* ====== RESPONSIVE DESIGN ====== */
+@media (max-width: 768px) {
+  .auth-container {
+    flex-direction: column;
+    width: 90%;
+    height: auto;
+  }
+  .side-panel {
+    order: 2;
+    padding: 40px 20px;
+  }
+  .side-panel h1 { font-size: 2rem; }
+  .side-panel img { width: 100px; }
+  .form-box {
+    order: 1;
+    padding: 40px 25px;
+  }
+}
+@media (max-width: 480px) {
+  .form-box { padding: 30px 18px; }
+  .input-field input {
+    padding: 12px 40px 12px 12px;
+    font-size: 0.9rem;
+  }
+  .btn-primary {
+    font-size: 0.9rem;
+    padding: 12px;
+  }
+  .side-panel h1 { font-size: 1.7rem; }
+  .side-panel p { font-size: 0.85rem; }
+}
+@media (min-width: 1440px) {
+  .auth-container {
+    width: 1050px;
+    height: 620px;
+  }
+  .form-box h2 { font-size: 2rem; }
+  .side-panel h1 { font-size: 2.6rem; }
+}
+</style>
+</head>
+
+<body>
+
+<div class="auth-container" id="authBox">
+
+  <div class="side-panel">
+    <h1>STACKLY ARCHITECH STUDIO</h1>
+    <p>Where creativity meets construction — your blueprint for the future.</p>
+    <img src="https://cdn-icons-png.flaticon.com/512/8099/8099328.png" alt="Building Icon">
+  </div>
+
+  <!-- Login Form -->
+  <div class="form-box" id="loginForm">
+    <button class="btn-back" id="loginBack">← Back</button>
+    <h2>Welcome Back</h2>
+    <div class="input-field">
+      <input type="email" id="loginEmail" placeholder="Email Address" required>
+      <i class="fa fa-envelope"></i>
+    </div>
+    <div class="input-field">
+      <input type="password" id="loginPassword" placeholder="Password" required>
+      <i class="fa fa-lock"></i>
+    </div>
+    <div class="forgot-password">
+      <a href="#" onclick="goForgotPassword()">Forgot Password?</a>
+    </div>
+    <button class="btn-primary" onclick="validateLogin()">Login</button>
+    <p class="note">New to Stackly? <span id="goSignup">Create Account</span></p>
+  </div>
+
+  <!-- Signup Form -->
+  <div class="form-box" id="signupForm">
+    <button class="btn-back" id="backToLogin">← Back to Login</button>
+    <h2>Create Account</h2>
+    <div class="input-field">
+      <input type="text" id="signupName" placeholder="Full Name" required>
+      <i class="fa fa-user"></i>
+    </div>
+    <div class="input-field">
+      <input type="email" id="signupEmail" placeholder="Email Address" required>
+      <i class="fa fa-envelope"></i>
+    </div>
+    <div class="input-field">
+      <input type="password" id="signupPassword" placeholder="Password" required>
+      <i class="fa fa-lock"></i>
+    </div>
+    <button class="btn-primary" onclick="validateSignup()">Register</button>
+    <p class="note">Already a member? <span id="goLogin">Login</span></p>
+  </div>
+
+</div>
+
+<script>
+const authBox = document.getElementById('authBox');
+
+// Switch between login and signup
+document.getElementById('goSignup').addEventListener('click', () => authBox.classList.add('active'));
+document.getElementById('goLogin').addEventListener('click', () => authBox.classList.remove('active'));
+document.getElementById('backToLogin').addEventListener('click', () => authBox.classList.remove('active'));
+
+// Login back button goes to previous page
+document.getElementById('loginBack').addEventListener('click', () => {
+  window.history.back(); // can customize to home page
+});
+
+// Form validation
+function validateLogin() {
+  const email = document.getElementById("loginEmail").value.trim();
+  const pass = document.getElementById("loginPassword").value.trim();
+  if (!email.includes("@")) return alert("⚠️ Please enter a valid email.");
+  if (pass.length < 6) return alert("🔒 Password must be at least 6 characters.");
+  alert("✅ Login successful! Welcome back.");
+}
+
+function validateSignup() {
+  const email = document.getElementById("signupEmail").value.trim();
+  const pass = document.getElementById("signupPassword").value.trim();
+  if (!email.includes("@")) return alert("⚠️ Enter a valid email address.");
+  if (pass.length < 6) return alert("🔒 Password must be at least 6 characters.");
+  alert("🎉 Account created successfully!");
+}
+
+function goForgotPassword() {
+  alert("This feature can be upgraded with a dedicated forgot-password form.");
+}
+</script>
+
+</body>
+</html>
